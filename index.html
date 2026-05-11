@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bingo Game</title>
+    <style>
+        body { text-align: center; font-family: sans-serif; background: #2c3e50; color: white; }
+        .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; max-width: 300px; margin: auto; }
+        .cell { width: 50px; height: 50px; background: #ecf0f1; color: black; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; border-radius: 5px; }
+        .selected { background: #e74c3c; color: white; }
+    </style>
+</head>
+<body>
+    <h2>Bingo Bot</h2>
+    <div id="board" class="grid"></div>
+    <script>
+        const board = document.getElementById('board');
+        for (let i = 1; i <= 25; i++) {
+            let div = document.createElement('div');
+            div.className = 'cell';
+            div.innerText = Math.floor(Math.random() * 75) + 1;
+            div.onclick = () => div.classList.toggle('selected');
+            board.appendChild(div);
+        }
+    </script>
+</body>
+</html>
