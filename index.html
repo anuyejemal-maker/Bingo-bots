@@ -1,26 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Bingo Game</title>
-    <style>
-        body { text-align: center; font-family: sans-serif; background: #2c3e50; color: white; }
-        .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px; max-width: 300px; margin: auto; }
-        .cell { width: 50px; height: 50px; background: #ecf0f1; color: black; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; border-radius: 5px; }
-        .selected { background: #e74c3c; color: white; }
-    </style>
-</head>
-<body>
-    <h2>Bingo Bot</h2>
-    <div id="board" class="grid"></div>
-    <script>
-        const board = document.getElementById('board');
-        for (let i = 1; i <= 25; i++) {
-            let div = document.createElement('div');
-            div.className = 'cell';
-            div.innerText = Math.floor(Math.random() * 75) + 1;
-            div.onclick = () => div.classList.toggle('selected');
-            board.appendChild(div);
-        }
-    </script>
-</body>
-</html>
+<!-- index.html keessatti bakka Wallet fi Button-otaa -->
+<div id="wallet" style="background: #2ed573; padding: 10px;">Balance: <span id="bal">0</span> ETB</div>
+
+<div id="status">Lakkoofsa 25 filadhu: <span id="count">0</span>/25</div>
+
+<div id="board" class="grid">
+    <!-- Lakkoofsota 1-75 hunda asitti fiduu (User-ni akka filatuuf) -->
+</div>
+
+<button id="startBtn" disabled onclick="startGame()">Tapha Jalqabi</button>
+
+<script>
+    let myNumbers = []; // Lakkoofsota taphataan filate
+    let balance = 100; // Firebase irraa dubbisna (ammaaf 100 haa ta'u)
+
+    // Lakkoofsa 1-75 uumuu
+    const board = document.getElementById('board');
+    for (let i = 1; i <= 75; i++) {
+        let div = document.createElement('div');
+        div.className = 'cell';
+        div.innerText = i;
+        div.onclick = () => {
+            if (myNumbers.length < 25 && !myNumbers.includes(i)) {
+                myNumbers.push(i);
+                div.classList.add('selected');
+                document.getElementById('count').innerText = myNumbers.length;
+                if (myNumbers.length === 25) document.getElementById('startBtn').disabled = false;
+            }
+        };
+        board.appendChild(div);
+    }
+
+    function startGame() {
+        // Asitti Firebase waliin wal qunnamsiifna
+        alert("Tapha jalqabdeetta! Balance kee: " + balance);
+    }
+</script>
