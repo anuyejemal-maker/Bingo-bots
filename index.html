@@ -8,6 +8,7 @@
 </div>
 
 <button id="startBtn" disabled onclick="startGame()">Tapha Jalqabi</button>
+<button id="confirmBtn" disabled onclick="confirmSelection()" style="display: none; margin-left: 10px;">Confirm</button>
 
 <script>
     let myNumbers = []; // Lakkoofsota taphataan filate
@@ -24,7 +25,11 @@
                 myNumbers.push(i);
                 div.classList.add('selected');
                 document.getElementById('count').innerText = myNumbers.length;
-                if (myNumbers.length === 25) document.getElementById('startBtn').disabled = false;
+                if (myNumbers.length === 25) {
+                    document.getElementById('startBtn').disabled = false;
+                    document.getElementById('confirmBtn').disabled = false;
+                    document.getElementById('confirmBtn').style.display = 'inline-block';
+                }
             }
         };
         board.appendChild(div);
@@ -39,5 +44,11 @@
         // Asitti Firebase waliin wal qunnamsiifna
         alert("Tapha jalqabdeetta! Balance kee: " + balance);
     }
-</script>
+
+    function confirmSelection() {
+        // Gaafa 25 guutu, filannoo mirkaneessuu
+        alert("Filannoo kee mirkaneessinu! Lakkoofsi: " + myNumbers.join(", "));
+        // Firebase waliin wal qunnamsiifna
+        console.log("Confirmed numbers:", myNumbers);
+    }
 </script>
