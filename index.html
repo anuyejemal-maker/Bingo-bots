@@ -31,6 +31,11 @@
     }
 
     function startGame() {
+        // Taphatichi lakkoofsa 25 qofa akka filatu godhi
+        if (myNumbers.length !== 25) {
+            alert("Lakkoofsa 25 qofa filadhu! Amma " + myNumbers.length + " filatte.");
+            return;
+        }
         // Asitti Firebase waliin wal qunnamsiifna
         alert("Tapha jalqabdeetta! Balance kee: " + balance);
     }
